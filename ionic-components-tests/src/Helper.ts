@@ -61,7 +61,7 @@ export function AddElement(atEnd = false): IElement[] {
     console.log('Going to add one more element....', itemsAccordion);
     const randomNumber = Math.random();
     const item: IElement = {
-      id: (randomNumber * 333).toString(8),
+      id: (randomNumber).toString(36),
       title: getRandomName(randomNumber),
       content: getParagraph(),
       extraContent: randomNumber > 0.6? `${getParagraph(true)}`:'',

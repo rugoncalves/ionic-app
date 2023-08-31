@@ -1,6 +1,12 @@
 import { IonAccordion, IonAccordionGroup, IonIcon, IonItem, IonLabel } from "@ionic/react";
 import React, { Component } from "react";
 
+function logger(componentName: string, message: string, ...args: unknown[]): void {
+    const time = ('00000' + Math.floor(performance.now())).slice(-5);
+    const name = ('____________________' + componentName).slice(-20);
+    console.log(`> ${time} | ${name}: ${message}`, ...args);
+}
+
 export interface IElement {
     id: string;
     title: string;
@@ -12,7 +18,21 @@ export class DynamicAccordion extends Component<{ elements: IElement[] }> {
     constructor(props: { elements: IElement[] }) {
         super(props);
     }
+
+    componentDidMount() {
+        logger('DynamicAccordion', 'componentDidMount()');
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        logger('DynamicAccordion', 'componentDidUpdate()', prevProps);
+    }
+
+    componentWillUnmount() {
+        logger('DynamicAccordion', 'componentWillUnmount()');
+    }
+
     public render(): any {
+        logger('DynamicAccordion', 'render()');
         return (
             <IonAccordionGroup>
                 {this.props.elements.map(item => (
